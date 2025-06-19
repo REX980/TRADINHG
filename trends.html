@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Market Trends | NAREJ TRADE X</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Explore the latest market trends, top movers, and trading insights on NAREJ TRADE X.">
+  <link rel="stylesheet" href="dashboard.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #121926 0%, #232f3e 100%);
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 40px auto 0 auto;
+      padding: 0 18px;
+    }
+    .trends-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .trends-header h1 {
+      color: #00ffd5;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+    .trends-header p {
+      color: #b2dfdb;
+      font-size: 1.1rem;
+      margin-bottom: 0;
+    }
+    .trend-section {
+      background: #1f2a36;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(0,188,212,0.10);
+      padding: 32px 24px;
+      margin-bottom: 36px;
+    }
+    .trend-section h2 {
+      color: #00ffd5;
+      font-size: 1.3rem;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+    .trend-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+    .trend-table th, .trend-table td {
+      padding: 14px 10px;
+      text-align: left;
+      border-bottom: 1px solid #232f3e;
+    }
+    .trend-table th {
+      color: #00ffd5;
+      font-size: 1.1rem;
+      font-weight: 600;
+      background: #232f3e;
+    }
+    .trend-table tr:hover {
+      background: #232f3e;
+    }
+    .trend-up {
+      color: #00e676;
+      font-weight: 700;
+    }
+    .trend-down {
+      color: #ff5252;
+      font-weight: 700;
+    }
+    .trend-neutral {
+      color: #b2dfdb;
+      font-weight: 700;
+    }
+    .insight-section {
+      background: #232f3e;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(0,188,212,0.10);
+      padding: 32px 24px;
+      margin-bottom: 36px;
+      text-align: center;
+    }
+    .insight-section h3 {
+      color: #00ffd5;
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+    .insight-section p {
+      color: #b2dfdb;
+      font-size: 1.05rem;
+      margin-bottom: 0;
+    }
+    .trend-chart-section {
+      background: #1f2a36;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(0,188,212,0.10);
+      padding: 32px 24px;
+      margin-bottom: 36px;
+      text-align: center;
+    }
+    .trend-chart-section h2 {
+      color: #00ffd5;
+      font-size: 1.2rem;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+    @media (max-width: 800px) {
+      .container { padding: 0 4px; }
+      .trend-section, .insight-section, .trend-chart-section { padding: 18px 4px; }
+      .trend-table th, .trend-table td { padding: 8px 4px; }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="trends-header">
+      <h1>Market Trends</h1>
+      <p>Stay ahead with real-time market movers, top gainers, and trading insights on NAREJ TRADE X.</p>
+    </div>
+    <section class="trend-section">
+      <h2>Top Movers</h2>
+      <table class="trend-table">
+        <thead>
+          <tr>
+            <th>Asset</th>
+            <th>Price</th>
+            <th>24h Change</th>
+            <th>Volume</th>
+            <th>Trend</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>BTC/USD</td>
+            <td>$27,350.00</td>
+            <td class="trend-up">+3.2%</td>
+            <td>$18.2B</td>
+            <td class="trend-up">&#9650; Uptrend</td>
+          </tr>
+          <tr>
+            <td>ETH/USD</td>
+            <td>$1,850.00</td>
+            <td class="trend-down">-1.1%</td>
+            <td>$8.7B</td>
+            <td class="trend-down">&#9660; Downtrend</td>
+          </tr>
+          <tr>
+            <td>ADA/USD</td>
+            <td>$0.42</td>
+            <td class="trend-up">+2.8%</td>
+            <td>$1.1B</td>
+            <td class="trend-up">&#9650; Uptrend</td>
+          </tr>
+          <tr>
+            <td>XRP/USD</td>
+            <td>$0.62</td>
+            <td class="trend-neutral">0.0%</td>
+            <td>$2.3B</td>
+            <td class="trend-neutral">&#8212; Neutral</td>
+          </tr>
+          <tr>
+            <td>SOL/USD</td>
+            <td>$95.00</td>
+            <td class="trend-up">+4.5%</td>
+            <td>$3.9B</td>
+            <td class="trend-up">&#9650; Uptrend</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="trend-chart-section">
+      <h2>BTC/USD 7-Day Trend</h2>
+      <canvas id="btcTrendChart" width="600" height="260"></canvas>
+    </section>
+    <section class="insight-section">
+      <h3>Market Insights</h3>
+      <p>
+        The crypto market is showing mixed signals with Bitcoin and Solana leading the uptrend, while Ethereum faces slight corrections. 
+        Stay updated with our real-time analytics and make informed trading decisions. 
+        Remember, trends can change rapidly—always manage your risk!
+      </p>
+    </section>
+  </div>
+  <script>
+    // BTC Trend Chart
+    document.addEventListener('DOMContentLoaded', function() {
+      const ctx = document.getElementById('btcTrendChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed'],
+          datasets: [{
+            label: 'BTC/USD',
+            data: [26300, 26550, 26800, 27000, 27200, 27300, 27350],
+            borderColor: '#00ffd5',
+            backgroundColor: 'rgba(0,255,213,0.08)',
+            fill: true,
+            tension: 0.4,
+            pointRadius: 4,
+            pointBackgroundColor: '#00ffd5'
+          }]
+        },
+        options: {
+          plugins: { legend: { labels: { color: '#fff' } } },
+          scales: {
+            x: { 
+              ticks: { color: '#fff' }, 
+              grid: { color: '#2c3e50' } 
+            },
+            y: { 
+              ticks: { color: '#fff' },
+              grid: { color: '#2c3e50' } 
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

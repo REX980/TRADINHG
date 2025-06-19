@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NAREJ TRADE X</title>
+  <meta name="description" content="NAREJ TRADE X - The next generation trading platform for secure, fast, and insightful investing.">
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="wa.me2348169598952">
+  <style>
+    .hero-section {
+      background: linear-gradient(135deg, #00bcd4 0%, #232f3e 100%);
+      color: #fff;
+      padding: 80px 0 60px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+    }
+    .hero-section p {
+      font-size: 1.25rem;
+      margin-bottom: 32px;
+      color: #e0f7fa;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-section .btn {
+      font-size: 1.1rem;
+      padding: 16px 36px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+    .hero-graphic {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 320px;
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .quick-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin: 30px 0 0 0;
+    }
+    .quick-links a {
+      color: #00ffd5;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.2s;
+      font-size: 1rem;
+    }
+    .quick-links a:hover {
+      color: #00bcd4;
+      text-decoration: underline;
+    }
+    .security-section {
+      background: #181818;
+      color: #b2dfdb;
+      padding: 50px 0;
+      text-align: center;
+    }
+    .security-section h3 {
+      color: #00ffd5;
+      font-size: 1.5rem;
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+    .security-features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 18px;
+    }
+    .security-feature {
+      background: #232323;
+      border-radius: 10px;
+      padding: 24px 18px;
+      max-width: 260px;
+      min-width: 180px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+      color: #fff;
+      text-align: left;
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+    .security-feature strong {
+      color: #00ffd5;
+      font-size: 1.1em;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .notification {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      background: #00bcd4;
+      color: #fff;
+      padding: 16px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      box-shadow: 0 2px 12px rgba(0,188,212,0.18);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transition: opacity 0.4s;
+    }
+    .notification.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    @media (max-width: 900px) {
+      .security-features { flex-direction: column; align-items: center; }
+      .hero-graphic { width: 180px; }
+    }
+    @media (max-width: 600px) {
+      .hero-section h1 { font-size: 1.5rem; }
+      .hero-section p { font-size: 1rem; }
+      .security-section h3 { font-size: 1.1rem; }
+      .security-feature { padding: 14px 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <h1>Welcome to NAREJ TRADE X</h1>
+      <p>
+        The next generation trading platform for secure, fast, and insightful investing.<br>
+        Trade smarter with real-time charts, advanced analytics, and robust security.
+      </p>
+      <a href="signup.html" class="btn">Get Started</a>
+      <div class="quick-links">
+        <a href="login.html">Login</a>
+        <a href="#features">Features</a>
+        <a href="#chart">Live Chart</a>
+        <a href="#testimonials">Testimonials</a>
+      </div>
+    </div>
+    <img src="https://www.svgrepo.com/show/354202/bitcoin.svg" alt="Trading Graphic" class="hero-graphic" />
+  </section>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="logo">NAREJ TRADE X</div>
+      <nav>
+        <ul>
+          <li><a href="#chart">Chart</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#signup">Sign Up</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- TradingView Chart -->
+  <section id="chart" class="chart-section">
+    <div class="container">
+      <h2>Live Market Chart</h2>
+      <div class="tradingview-widget-container">
+        <div id="tradingview_abcde"></div>
+      </div>
+    </div>
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script type="text/javascript">
+      new TradingView.widget({
+        container_id: "tradingview_abcde",
+        width: "100%",
+        height: 500,
+        symbol: "NASDAQ:AAPL",
+        interval: "D",
+        timezone: "Etc/UTC",
+        theme: "dark",
+        style: "1",
+        locale: "en",
+        toolbar_bg: "#f1f3f6",
+        enable_publishing: false,
+        hide_top_toolbar: false,
+        save_image: false,
+        studies: ["MACD@tv-basicstudies"],
+        show_popup_button: true,
+        popup_width: "1000",
+        popup_height: "650"
+      });
+    </script>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features-section">
+    <div class="container">
+      <h2>Why Trade with Us?</h2>
+      <ul>
+        <li>✔️ Real-time data charts</li>
+        <li>✔️ Technical indicators</li>
+        <li>✔️ Secure portfolio tools</li>
+        <li>✔️ Fast execution</li>
+        <li>✔️ 24/7 customer support</li>
+        <li>✔️ Multi-layered account security</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Security Section -->
+  <section class="security-section">
+    <div class="container">
+      <h3>Our Security Promise</h3>
+      <div class="security-features">
+        <div class="security-feature">
+          <strong>SSL Encryption</strong>
+          All data and transactions are protected with industry-leading SSL encryption.
+        </div>
+        <div class="security-feature">
+          <strong>2FA Authentication</strong>
+          Add an extra layer of security to your account with two-factor authentication.
+        </div>
+        <div class="security-feature">
+          <strong>Cold Wallet Storage</strong>
+          Majority of digital assets are stored offline for maximum safety.
+        </div>
+        <div class="security-feature">
+          <strong>Continuous Monitoring</strong>
+          Our systems are monitored 24/7 to prevent unauthorized access.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <h2>What Our Users Say</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p>"NAREJ TRADE X completely changed how I invest. The intuitive UI and real-time insights are game-changers!"</p>
+          <h4>- Priya S., Retail Investor</h4>
+        </div>
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p>"As a beginner, I found NAREJ TRADE X easy to understand and super helpful in learning how to trade wisely."</p>
+          <h4>- Alex M., Student Trader</h4>
+        </div>
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p>"I switched from another platform to NAREJ TRADE X, and I’ve never looked back. It's sleek, fast, and reliable."</p>
+          <h4>- Jordan R., Day Trader</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CEO Section -->
+  <section class="ceo-section" style="background:#1f2a36; color:#fff; padding:60px 0;">
+    <div class="container" style="max-width:800px; margin:auto;">
+      <div style="display:flex; flex-wrap:wrap; align-items:center; gap:36px;">
+        <img src="data:image/webp;base64,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">
+        <div style="flex:1; min-width:220px;">
+          <h2 style="color:#00ffd5; font-size:2rem; font-weight:700; margin-bottom:10px;">Meet Our CEO</h2>
+          <h3 style="color:#00e676; font-size:1.2rem; margin-bottom:8px;">Ndubuisi Narej</h3>
+          <p style="color:#b2dfdb; font-size:1.08rem; margin-bottom:10px;">
+            Ndubuisi REX is the visionary founder and CEO of NAREJ TRADE X. With over a decade of experience in financial technology and digital innovation, he is passionate about empowering individuals to achieve financial freedom through secure and accessible trading solutions.
+          </p>
+          <p style="color:#b2dfdb; font-size:1.05rem;">
+            Under his leadership, NAREJ TRADE X has grown into a trusted platform known for transparency, reliability, and user-centric design. Ndubuisi believes in continuous learning, ethical leadership, and building technology that truly serves people.
+          </p>
+          <div style="margin-top:12px;">
+            <a href="wa.me/2348169598952" target="_blank" style="color:#00ffd5; text-decoration:underline; font-weight:600; margin-right:18px;">LinkedIn</a>
+            <a href="mailto:narejtradex.@gmail.com" style="color:#00ffd5; text-decoration:underline; font-weight:600;">Contact CEO</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section id="signup" class="signup-section">
+    <div class="container">
+      <h2>Start Trading Now</h2>
+      <a href="signup.html" class="btn">Create Account</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 NAREJ TRADE X. All rights reserved. | <a href="mailto:support@narejtradex.com" style="color:#00ffd5;text-decoration:underline;">Contact Support</a></p>
+    </div>
+  </footer>
+
+  <!-- Notification System -->
+  <div class="notification" id="notification"></div>
+  <script>
+    // Notification system for demo
+    function showNotification(message, type = 'info') {
+      const notif = document.getElementById('notification');
+      notif.textContent = message;
+      notif.style.background = type === 'success' ? '#00e676' : '#00bcd4';
+      notif.classList.add('show');
+      setTimeout(() => {
+        notif.classList.remove('show');
+      }, 3200);
+    }
+    // Example: showNotification('Welcome to NAREJ TRADE X!', 'success');
+    window.addEventListener('DOMContentLoaded', function() {
+      showNotification('Welcome to NAREJ TRADE X! Trade smarter, trade secure.', 'success');
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

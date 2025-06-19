@@ -1,0 +1,122 @@
+/* General body styling for logout page */
+body {
+  background: linear-gradient(135deg, #121926 0%, #232f3e 100%);
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Logout container styling */
+.logout-container {
+  background: #1f2a36;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(0,188,212,0.10);
+  padding: 48px 32px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  animation: fadeIn 0.7s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(40px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+.logout-title {
+  color: #00ffd5;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+.logout-message {
+  color: #b2dfdb;
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.logout-icon {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  background: #232f3e;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,255,213,0.08);
+  border: 2.5px solid #00ffd5;
+  transition: box-shadow 0.2s;
+}
+.logout-icon img {
+  width: 48px;
+  height: 48px;
+  display: block;
+  margin: auto;
+}
+
+.logout-btn {
+  background: linear-gradient(90deg, #00e676 70%, #00bcd4 100%);
+  color: #181818;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 36px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  margin-top: 10px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 8px rgba(0,255,213,0.08);
+  letter-spacing: 1px;
+}
+.logout-btn:hover {
+  background: #00bcd4;
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(0,255,213,0.13);
+}
+
+.logout-note {
+  color: #b2dfdb;
+  font-size: 0.98rem;
+  margin-top: 18px;
+  background: #232f3e;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+  line-height: 1.5;
+}
+.logout-note a {
+  color: #00ffd5;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+.logout-note a:hover {
+  color: #00e676;
+}
+
+@media (max-width: 500px) {
+  .logout-container { padding: 18px 4px; }
+  .logout-title { font-size: 1.2rem; }
+  .logout-message { font-size: 1rem; }
+  .logout-icon { width: 48px; height: 48px; }
+  .logout-icon img { width: 32px; height: 32px; }
+  .logout-btn { padding: 10px 18px; font-size: 1rem; }
+}
+
+/* Custom scrollbar for the logout note if needed */
+.logout-note::-webkit-scrollbar {
+  width: 8px;
+  background: #232f3e;
+}
+.logout-note::-webkit-scrollbar-thumb {
+  background: #00bcd4;
+  border-radius: 8px;
+}

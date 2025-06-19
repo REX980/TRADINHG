@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Social Performance Trade | NAREJ TRADE X</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Track and copy top traders' performance on NAREJ TRADE X. Social trading, leaderboards, and community insights.">
+  <link rel="stylesheet" href="dashboard.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #121926 0%, #232f3e 100%);
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 40px auto 0 auto;
+      padding: 0 18px;
+    }
+    .section-title {
+      font-size: 2rem;
+      color: #00ffd5;
+      font-weight: 700;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+    .leaderboard {
+      background: #1f2a36;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(0,188,212,0.10);
+      padding: 32px 24px;
+      margin-bottom: 36px;
+    }
+    .leaderboard-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+    .leaderboard-table th, .leaderboard-table td {
+      padding: 14px 10px;
+      text-align: left;
+      border-bottom: 1px solid #232f3e;
+    }
+    .leaderboard-table th {
+      color: #00ffd5;
+      font-size: 1.1rem;
+      font-weight: 600;
+      background: #232f3e;
+    }
+    .leaderboard-table tr:hover {
+      background: #232f3e;
+    }
+    .trader-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      margin-right: 10px;
+      vertical-align: middle;
+      border: 2px solid #00bcd4;
+      object-fit: cover;
+    }
+    .copy-btn {
+      background: #00e676;
+      color: #181818;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 22px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      margin-left: 8px;
+    }
+    .copy-btn:hover {
+      background: #00bcd4;
+      color: #fff;
+    }
+    .performance-bar {
+      background: #384760;
+      border-radius: 8px;
+      height: 14px;
+      width: 100px;
+      display: inline-block;
+      margin-left: 10px;
+      vertical-align: middle;
+      overflow: hidden;
+    }
+    .performance-fill {
+      height: 100%;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #00e676 60%, #00bcd4 100%);
+      transition: width 0.4s;
+    }
+    .community-feed {
+      background: #1f2a36;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(0,188,212,0.10);
+      padding: 32px 24px;
+      margin-bottom: 36px;
+    }
+    .feed-title {
+      color: #00ffd5;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .feed-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .feed-item {
+      padding: 16px 0;
+      border-bottom: 1px solid #232f3e;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .feed-item:last-child {
+      border-bottom: none;
+    }
+    .feed-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #00bcd4;
+    }
+    .feed-content {
+      flex: 1;
+    }
+    .feed-user {
+      color: #00ffd5;
+      font-weight: 600;
+      margin-right: 8px;
+    }
+    .feed-time {
+      color: #b2dfdb;
+      font-size: 0.95rem;
+      margin-left: 8px;
+    }
+    .feed-action {
+      color: #00e676;
+      font-weight: 600;
+    }
+    .insight-section {
+      background: #232f3e;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(0,188,212,0.10);
+      padding: 32px 24px;
+      margin-bottom: 36px;
+      text-align: center;
+    }
+    .insight-section h3 {
+      color: #00ffd5;
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+    .insight-section p {
+      color: #b2dfdb;
+      font-size: 1.05rem;
+      margin-bottom: 0;
+    }
+    @media (max-width: 800px) {
+      .container { padding: 0 4px; }
+      .leaderboard, .community-feed, .insight-section { padding: 18px 4px; }
+      .leaderboard-table th, .leaderboard-table td { padding: 8px 4px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="section-title">Social Performance Trade</h1>
+
+    <!-- Leaderboard Section -->
+    <section class="leaderboard">
+      <h2>Top Performing Traders</h2>
+      <table class="leaderboard-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Trader</th>
+            <th>Performance</th>
+            <th>Followers</th>
+            <th>Copy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#1</td>
+            <td>
+              <img src="https://randomuser.me/api/portraits/men/11.jpg" class="trader-avatar" alt="Trader 1" />
+              <span>CryptoKing</span>
+            </td>
+            <td>
+              +38.2%
+              <span class="performance-bar"><span class="performance-fill" style="width: 90%;"></span></span>
+            </td>
+            <td>1,245</td>
+            <td><button class="copy-btn" onclick="copyTrader('CryptoKing')">Copy</button></td>
+          </tr>
+          <tr>
+            <td>#2</td>
+            <td>
+              <img src="https://randomuser.me/api/portraits/women/22.jpg" class="trader-avatar" alt="Trader 2" />
+              <span>AlphaQueen</span>
+            </td>
+            <td>
+              +29.7%
+              <span class="performance-bar"><span class="performance-fill" style="width: 75%;"></span></span>
+            </td>
+            <td>1,010</td>
+            <td><button class="copy-btn" onclick="copyTrader('AlphaQueen')">Copy</button></td>
+          </tr>
+          <tr>
+            <td>#3</td>
+            <td>
+              <img src="https://randomuser.me/api/portraits/men/33.jpg" class="trader-avatar" alt="Trader 3" />
+              <span>TrendMaster</span>
+            </td>
+            <td>
+              +22.5%
+              <span class="performance-bar"><span class="performance-fill" style="width: 60%;"></span></span>
+            </td>
+            <td>850</td>
+            <td><button class="copy-btn" onclick="copyTrader('TrendMaster')">Copy</button></td>
+          </tr>
+          <tr>
+            <td>#4</td>
+            <td>
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" class="trader-avatar" alt="Trader 4" />
+              <span>SmartSignals</span>
+            </td>
+            <td>
+              +18.1%
+              <span class="performance-bar"><span class="performance-fill" style="width: 48%;"></span></span>
+            </td>
+            <td>690</td>
+            <td><button class="copy-btn" onclick="copyTrader('SmartSignals')">Copy</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Community Feed Section -->
+    <section class="community-feed">
+      <div class="feed-title">Community Activity Feed</div>
+      <ul class="feed-list">
+        <li class="feed-item">
+          <img src="https://randomuser.me/api/portraits/men/12.jpg" class="feed-avatar" alt="User" />
+          <div class="feed-content">
+            <span class="feed-user">CryptoKing</span>
+            <span class="feed-action">closed a BTC/USD trade with +12% profit</span>
+            <span class="feed-time">2 min ago</span>
+          </div>
+        </li>
+        <li class="feed-item">
+          <img src="https://randomuser.me/api/portraits/women/23.jpg" class="feed-avatar" alt="User" />
+          <div class="feed-content">
+            <span class="feed-user">AlphaQueen</span>
+            <span class="feed-action">opened a new ETH/USD position</span>
+            <span class="feed-time">5 min ago</span>
+          </div>
+        </li>
+        <li class="feed-item">
+          <img src="https://randomuser.me/api/portraits/men/34.jpg" class="feed-avatar" alt="User" />
+          <div class="feed-content">
+            <span class="feed-user">TrendMaster</span>
+            <span class="feed-action">shared a trading insight</span>
+            <span class="feed-time">10 min ago</span>
+          </div>
+        </li>
+        <li class="feed-item">
+          <img src="https://randomuser.me/api/portraits/women/45.jpg" class="feed-avatar" alt="User" />
+          <div class="feed-content">
+            <span class="feed-user">SmartSignals</span>
+            <span class="feed-action">was copied by 3 new users</span>
+            <span class="feed-time">12 min ago</span>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Insights Section -->
+    <section class="insight-section">
+      <h3>Why Use Social Performance Trade?</h3>
+      <p>
+        Social trading lets you follow and copy top-performing traders, learn from their strategies, and diversify your portfolio with confidence. 
+        Join the NAREJ TRADE X community to access real-time insights, transparent performance data, and collaborative investing.
+      </p>
+    </section>
+  </div>
+  <script>
+    function copyTrader(trader) {
+      alert(`You are now copying ${trader}'s trades!`);
+    }
+  </script>
+</body>
+</html>

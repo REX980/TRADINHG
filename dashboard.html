@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard | NAREJ TRADE X</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial@3"></script>
+</head>
+<body>
+  <header class="dashboard-header">
+    <div class="logo">TradeX</div>
+    <nav>
+      <a href="#">Dashboard</a>
+      <a href="#">Portfolio</a>
+      <a href="#">Settings</a>
+      <a href="/logout" class="logout-btn">Logout</a>
+    </nav>
+  </header>
+
+  <main class="dashboard-content">
+    <h1 id="welcome-user">Welcome!</h1>
+    <p>Here's a quick overview of your activity today:</p>
+
+    <div class="cards-container">
+      <div class="card">
+        <h3>Account Balance</h3>
+        <p>$12,450.75</p>
+      </div>
+      <div class="card">
+        <h3>Today's Gain/Loss</h3>
+        <p>+2.36%</p>
+      </div>
+      <div class="card">
+        <h3>Top Asset</h3>
+        <p>BTC/USD</p>
+      </div>
+    </div>
+
+    <section class="trading-board">
+      <h2>Trading Board</h2>
+      <div class="trading-assets">
+        <div class="asset-card" id="asset-BTC">
+          <h3>BTC/USD</h3>
+          <p class="price">$<span class="price-value">27000.00</span></p>
+          <p class="change">+2.3%</p>
+          <div class="actions">
+            <button onclick="alert('Buy BTC')">Buy</button>
+            <button onclick="alert('Sell BTC')">Sell</button>
+          </div>
+        </div>
+        <div class="asset-card" id="asset-ETH">
+          <h3>ETH/USD</h3>
+          <p class="price">$<span class="price-value">1800.00</span></p>
+          <p class="change">-1.2%</p>
+          <div class="actions">
+            <button onclick="alert('Buy ETH')">Buy</button>
+            <button onclick="alert('Sell ETH')">Sell</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="live-chart-section">
+        <h2>Live Trading Chart: BTC/USD</h2>
+        <div class="tradingview-widget-container">
+          <div id="tradingview_btc"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="analytics-section">
+      <h2>Analytics</h2>
+      <div class="charts-container">
+        <div class="chart-card">
+          <h3>Balance Over Time</h3>
+          <canvas id="balanceChart" width="400" height="200"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Portfolio Distribution</h3>
+          <canvas id="portfolioChart" width="400" height="200"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Trading Volume</h3>
+          <canvas id="volumeChart" width="400" height="200"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio-distribution">
+      <h2>Portfolio Distribution</h2>
+      <div class="distribution-container">
+        <div class="asset">
+          <span class="asset-name">Bitcoin (BTC)</span>
+          <span class="asset-percent">45%</span>
+          <div class="progress-bar">
+            <div class="progress" style="width: 45%; background-color: #f7931a;"></div>
+          </div>
+        </div>
+        <div class="asset">
+          <span class="asset-name">Ethereum (ETH)</span>
+          <span class="asset-percent">30%</span>
+          <div class="progress-bar">
+            <div class="progress" style="width: 30%; background-color: #627eea;"></div>
+          </div>
+        </div>
+        <div class="asset">
+          <span class="asset-name">Cardano (ADA)</span>
+          <span class="asset-percent">15%</span>
+          <div class="progress-bar">
+            <div class="progress" style="width: 15%; background-color: #0033ad;"></div>
+          </div>
+        </div>
+        <div class="asset">
+          <span class="asset-name">Others</span>
+          <span class="asset-percent">10%</span>
+          <div class="progress-bar">
+            <div class="progress" style="width: 10%; background-color: #888;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wallet-section">
+      <h2>Your Wallet</h2>
+      <div class="wallet-card">
+        <p class="balance-label">Current Balance</p>
+        <p class="balance-amount">$0.00</p>
+        <div class="wallet-actions">
+          <button onclick="openModal('add')">Add Money</button>
+          <button onclick="openModal('withdraw')">Withdraw</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="trading-chat">
+      <h2>AI Chat</h2>
+      <div class="chat-box" id="chat-box"></div>
+      <form id="chat-form">
+        <input type="text" id="chat-message" placeholder="Type your message..." required />
+        <button type="submit">Send</button>
+        <ai reply="true" class="ai-reply">AI Reply</ai>
+      </form>
+    </section>
+
+    <section class="candlestick-chart-section">
+      <h2>BTC/USD Candlestick Chart</h2>
+      <canvas id="candlestickChart" width="400" height="200"></canvas>
+    </section>
+  </main>
+
+  <!-- Add Money Modal -->
+  <div id="add-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('add')">&times;</span>
+      <h3>Add Money</h3>
+      <form id="add-money-form">
+        <label>
+          Amount:
+          <input type="number" id="add-amount" placeholder="Enter amount" required min="1" step="0.01" />
+        </label>
+        <label>
+          Payment Method:
+          <select id="payment-method" required>
+            <option value="" disabled selected>Select method</option>
+            <option value="card">Credit/Debit Card</option>
+            <option value="bank">Bank Transfer</option>
+          </select>
+        </label>
+        <div id="bank-details" style="display:none; margin-top: 15px; background: #222f44; padding: 15px; border-radius: 8px; color: #ccc;">
+          <p><strong>Bank Transfer Instructions:</strong></p>
+          <p>Account Name: NDUBUISI ROSELINE NKECHI.</p>
+          <p>Account Number: 8135928206</p>
+          <p>Bank: OPAY Bank</p>
+          <p>SWIFT/BIC: GBINUS33</p>
+          <p>Reference: Use your username as payment reference</p>
+        </div>
+        <button type="submit" style="margin-top: 15px;">Add Funds</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Withdraw Money Modal -->
+  <div id="withdraw-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('withdraw')">&times;</span>
+      <h3>Withdraw Money</h3>
+      <form id="withdraw-money-form">
+        <input type="number" id="withdraw-amount" placeholder="Enter amount" required />
+        <button type="submit">Withdraw Funds</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 NAREJ TRADE X. All rights reserved.</p>
+  </footer>
+
+  <!-- TradingView Widget Script -->
+  <script src="https://s3.tradingview.com/tv.js"></script>
+  <script>
+    new TradingView.widget({
+      width: "100%",
+      height: 400,
+      symbol: "BINANCE:BTCUSDT",
+      interval: "60",
+      timezone: "Etc/UTC",
+      theme: "dark",
+      style: "1",
+      locale: "en",
+      toolbar_bg: "#222f44",
+      allow_symbol_change: true,
+      hideideas: true,
+      save_image: false,
+      details: true,
+      studies: ["MACD@tv-basicstudies"],
+      container_id: "tradingview_btc"
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      function openModal(type) {
+        document.getElementById(`${type}-modal`).style.display = 'flex';
+      }
+      function closeModal(type) {
+        document.getElementById(`${type}-modal`).style.display = 'none';
+      }
+      window.openModal = openModal;
+      window.closeModal = closeModal;
+
+      window.onclick = function (event) {
+        ['add', 'withdraw'].forEach(type => {
+          const modal = document.getElementById(`${type}-modal`);
+          if (event.target === modal) modal.style.display = 'none';
+        });
+      };
+
+      // Show bank details if bank transfer is selected
+      const paymentMethod = document.getElementById('payment-method');
+      const bankDetails = document.getElementById('bank-details');
+      if (paymentMethod) {
+        paymentMethod.addEventListener('change', function () {
+          bankDetails.style.display = this.value === 'bank' ? 'block' : 'none';
+        });
+      }
+
+      // Asset price simulation
+      const assets = {
+        BTC: { price: 27000, change: 2.3 },
+        ETH: { price: 1800, change: -1.2 },
+      };
+      function updatePrices() {
+        Object.keys(assets).forEach(symbol => {
+          const asset = assets[symbol];
+          const fluctuation = (Math.random() - 0.5) * 200;
+          asset.price += fluctuation;
+          asset.change = (Math.random() * 4 - 2).toFixed(2); // +/- 2%
+          const el = document.getElementById(`asset-${symbol}`);
+          if (el) {
+            el.querySelector('.price-value').textContent = asset.price.toFixed(2);
+            el.querySelector('.change').textContent = `${asset.change > 0 ? '+' : ''}${asset.change}%`;
+            el.querySelector('.change').style.color = asset.change >= 0 ? '#00e676' : '#ff5252';
+          }
+        });
+      }
+      setInterval(updatePrices, 5000);
+
+      // Simple chat functionality
+      const chatForm = document.getElementById('chat-form');
+      const chatBox = document.getElementById('chat-box');
+      if (chatForm && chatBox) {
+        chatForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const msg = document.getElementById('chat-message').value.trim();
+          if (msg) {
+            const p = document.createElement('p');
+            p.textContent = msg;
+            chatBox.appendChild(p);
+            chatForm.reset();
+            chatBox.scrollTop = chatBox.scrollHeight;
+          }
+        });
+      }
+
+      // Candlestick Chart (BTC/USD) using Chart.js Financial
+      if (window.Chart && Chart.registry && Chart.registry.getPlugin('financial')) {
+        const candlestickEl = document.getElementById('candlestickChart');
+        if (candlestickEl) {
+          const ctx = candlestickEl.getContext('2d');
+          const ohlcData = [
+            { t: new Date('2025-06-10'), o: 27000, h: 27200, l: 26800, c: 27150 },
+            { t: new Date('2025-06-11'), o: 27150, h: 27300, l: 27000, c: 27050 },
+            { t: new Date('2025-06-12'), o: 27050, h: 27100, l: 26850, c: 26900 },
+            { t: new Date('2025-06-13'), o: 26900, h: 27250, l: 26800, c: 27000 },
+            { t: new Date('2025-06-14'), o: 27000, h: 27500, l: 26950, c: 27350 },
+          ];
+          new Chart(ctx, {
+            type: 'candlestick',
+            data: {
+              datasets: [{
+                label: 'BTC/USD',
+                data: ohlcData,
+                borderColor: '#00e676',
+                borderWidth: 1,
+              }]
+            },
+            options: {
+              responsive: true,
+              scales: {
+                x: {
+                  type: 'time',
+                  time: {
+                    tooltipFormat: 'MMM DD',
+                  },
+                  ticks: {
+                    source: 'auto',
+                    color: '#fff'
+                  },
+                  grid: {
+                    color: '#2c3e50'
+                  }
+                },
+                y: {
+                  title: {
+                    display: true,
+                    text: 'Price ($)'
+                  },
+                  ticks: {
+                    color: '#fff'
+                  },
+                  grid: {
+                    color: '#2c3e50'
+                  }
+                }
+              },
+              plugins: {
+                legend: { display: false }
+              }
+            }
+          });
+        }
+      }
+
+      // Add Money Form Handler
+      const addMoneyForm = document.getElementById('add-money-form');
+      if (addMoneyForm) {
+        addMoneyForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const amount = parseFloat(document.getElementById('add-amount').value);
+          const method = document.getElementById('payment-method').value;
+
+          if (!amount || isNaN(amount) || amount <= 0) return;
+
+          // Store amount temporarily for success page
+          sessionStorage.setItem('lastAddedAmount', amount.toFixed(2));
+
+          if (method === 'bank') {
+            window.location.href = 'bank-transfer-success.html';
+          } else {
+            alert('Card payment processed successfully!');
+          }
+        });
+      }
+
+      // Withdraw Money Form Handler
+      const withdrawForm = document.getElementById("withdraw-money-form");
+      let balance = 12450.75;
+      if (withdrawForm) {
+        withdrawForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const amount = parseFloat(document.getElementById("withdraw-amount").value);
+          if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            // Update balance display
+            const balanceEls = document.querySelectorAll('.balance-amount');
+            balanceEls.forEach(el => {
+              el.textContent = `$${balance.toFixed(2)}`;
+            });
+            const cardBalance = document.querySelector('.card p');
+            if (cardBalance) cardBalance.textContent = `$${balance.toFixed(2)}`;
+            if (typeof closeModal === "function") closeModal("withdraw");
+            this.reset();
+
+            // Simulate redirect after short delay
+            setTimeout(() => {
+              window.location.href = 'withdraw-confirmation.html';
+            }, 800);
+          } else {
+            alert("Invalid amount. You can’t withdraw more than your current balance.");
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

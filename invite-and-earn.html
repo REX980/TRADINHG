@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Invite & Earn | NAREJ TRADE X</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Invite friends to NAREJ TRADE X and earn rewards. Grow your network and get bonuses for every successful referral.">
+  <link rel="stylesheet" href="dashboard.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #121926 0%, #232f3e 100%);
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 700px;
+      margin: 40px auto 0 auto;
+      padding: 0 18px;
+    }
+    .invite-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .invite-header h1 {
+      color: #00ffd5;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+    .invite-header p {
+      color: #b2dfdb;
+      font-size: 1.1rem;
+      margin-bottom: 0;
+    }
+    .invite-card {
+      background: #1f2a36;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(0,188,212,0.10);
+      padding: 32px 24px;
+      margin-bottom: 36px;
+      text-align: center;
+    }
+    .invite-link-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #232f3e;
+      border-radius: 10px;
+      padding: 16px;
+      margin: 18px 0;
+      box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+    }
+    .invite-link {
+      color: #00ffd5;
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-right: 16px;
+      word-break: break-all;
+    }
+    .copy-btn {
+      background: #00e676;
+      color: #181818;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 22px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .copy-btn:hover {
+      background: #00bcd4;
+      color: #fff;
+    }
+    .reward-info {
+      background: #232f3e;
+      color: #b2dfdb;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 24px;
+      font-size: 1.05rem;
+      text-align: left;
+      box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+    }
+    .reward-info strong {
+      color: #00ffd5;
+    }
+    .referral-stats {
+      display: flex;
+      justify-content: space-between;
+      background: #263545;
+      border-radius: 10px;
+      padding: 18px 24px;
+      margin-bottom: 24px;
+      color: #fff;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 8px rgba(0,188,212,0.08);
+    }
+    .referral-stats div {
+      text-align: center;
+      flex: 1;
+    }
+    .referral-stats .stat-label {
+      color: #b2dfdb;
+      font-size: 0.98rem;
+      margin-bottom: 4px;
+      display: block;
+    }
+    .referral-stats .stat-value {
+      color: #00ffd5;
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+    .how-it-works {
+      background: #232f3e;
+      border-radius: 10px;
+      padding: 24px 18px;
+      margin-bottom: 32px;
+      box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+    }
+    .how-it-works h2 {
+      color: #00ffd5;
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .how-it-works ul {
+      color: #b2dfdb;
+      font-size: 1.05rem;
+      padding-left: 20px;
+      margin: 0;
+    }
+    .success-message {
+      color: #00e676;
+      font-weight: bold;
+      margin-top: 18px;
+      display: none;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+    @media (max-width: 600px) {
+      .container { padding: 0 4px; }
+      .invite-card, .how-it-works, .reward-info, .referral-stats { padding: 12px 6px; }
+      .invite-header h1 { font-size: 1.3rem; }
+      .referral-stats { flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="invite-header">
+      <h1>Invite & Earn</h1>
+      <p>Share your unique referral link and earn rewards for every friend who joins and trades on NAREJ TRADE X!</p>
+    </div>
+    <div class="invite-card">
+      <div class="reward-info">
+        <strong>Earn up to $25</strong> for every successful referral. Your friend gets a $10 welcome bonus too!
+      </div>
+      <div class="invite-link-box">
+        <span class="invite-link" id="invite-link">https://narejtradex.com/signup?ref=YOURCODE</span>
+        <button class="copy-btn" onclick="copyInviteLink()">Copy</button>
+      </div>
+      <div class="success-message" id="success-message"></div>
+      <div class="referral-stats">
+        <div>
+          <span class="stat-label">Total Invites</span>
+          <span class="stat-value" id="total-invites">0</span>
+        </div>
+        <div>
+          <span class="stat-label">Successful Referrals</span>
+          <span class="stat-value" id="successful-referrals">0</span>
+        </div>
+        <div>
+          <span class="stat-label">Total Earned</span>
+          <span class="stat-value" id="total-earned">$0</span>
+        </div>
+      </div>
+    </div>
+    <div class="how-it-works">
+      <h2>How It Works</h2>
+      <ul>
+        <li>Share your referral link with friends, family, or on social media.</li>
+        <li>Your friend signs up and completes their first trade.</li>
+        <li>You both receive your rewards instantly in your wallet.</li>
+        <li>Track your invites and earnings in real-time on this page.</li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    // Simulate referral stats for demo
+    document.getElementById('total-invites').textContent = '8';
+    document.getElementById('successful-referrals').textContent = '5';
+    document.getElementById('total-earned').textContent = '$125';
+
+    // Copy referral link functionality
+    function copyInviteLink() {
+      const link = document.getElementById('invite-link').textContent;
+      navigator.clipboard.writeText(link).then(function() {
+        showSuccess('Referral link copied!');
+      }, function() {
+        showSuccess('Copy failed. Please copy manually.');
+      });
+    }
+    function showSuccess(msg) {
+      const msgDiv = document.getElementById('success-message');
+      msgDiv.textContent = msg;
+      msgDiv.style.display = 'block';
+      setTimeout(() => {
+        msgDiv.style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Bank transfer instructions for NAREJ TRADE X users.">
+  <title>Bank Transfer Details | NAREJ TRADE X</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <style>
+    body {
+      background-color: #121926;
+      color: #eee;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .bank-details-container {
+      background-color: #1f2a36;
+      padding: 40px 36px 32px 36px;
+      border-radius: 18px;
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 188, 212, 0.10), 0 2px 8px rgba(0,0,0,0.18);
+      position: relative;
+      animation: fadeIn 0.7s cubic-bezier(.4,0,.2,1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    .bank-details-container h1 {
+      color: #00bcd4;
+      margin-bottom: 18px;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+
+    .detail {
+      font-size: 18px;
+      margin: 10px 0;
+      background: #232f3e;
+      border-radius: 8px;
+      padding: 10px 0;
+      color: #fff;
+      box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+    }
+
+    .detail strong {
+      color: #00e676;
+      margin-right: 8px;
+    }
+
+    .copy-btn {
+      background: #00e676;
+      color: #181818;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 16px;
+      margin-left: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      vertical-align: middle;
+    }
+    .copy-btn:hover {
+      background: #00bcd4;
+      color: #fff;
+    }
+
+    .note {
+      margin-top: 25px;
+      font-size: 15px;
+      color: #b2dfdb;
+      font-style: italic;
+      background: #232f3e;
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+    }
+
+    .info-box {
+      background: #232f3e;
+      color: #b2dfdb;
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 18px;
+      font-size: 15px;
+      text-align: left;
+      box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+    }
+
+    .info-box strong {
+      color: #00ffd5;
+    }
+
+    .btn-back {
+      margin-top: 30px;
+      padding: 12px 25px;
+      background-color: #00bcd4;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      transition: background 0.3s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(0,188,212,0.08);
+    }
+
+    .btn-back:hover {
+      background-color: #0097a7;
+      box-shadow: 0 4px 16px rgba(0,188,212,0.16);
+    }
+
+    .success-message {
+      color: #00e676;
+      font-weight: bold;
+      margin-top: 18px;
+      display: none;
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 600px) {
+      .bank-details-container {
+        padding: 18px 6px 12px 6px;
+        max-width: 98vw;
+        border-radius: 10px;
+      }
+      .bank-details-container h1 { font-size: 1.3rem; }
+      .detail { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bank-details-container" tabindex="-1">
+    <h1>Bank Transfer Instructions</h1>
+    <div class="info-box">
+      <strong>Tip:</strong> For fastest processing, use your TradeX username as the payment reference. Bank transfers are typically credited within 1-3 hours during business days.
+    </div>
+    <p class="detail">
+      <strong>Account Name:</strong> NDUBUISI
+      <button class="copy-btn" onclick="copyToClipboard('NDUBUISI')">Copy</button>
+    </p>
+    <p class="detail">
+      <strong>Account Number:</strong> <span id="acc-num">8135928206</span>
+      <button class="copy-btn" onclick="copyToClipboard('8135928206')">Copy</button>
+    </p>
+    <p class="detail">
+      <strong>Bank:</strong> OPAY
+      <button class="copy-btn" onclick="copyToClipboard('OPAY')">Copy</button>
+    </p>
+    <p class="detail">
+      <strong>SWIFT/BIC:</strong> GBINUS33
+      <button class="copy-btn" onclick="copyToClipboard('GBINUS33')">Copy</button>
+    </p>
+    <p class="detail">
+      <strong>Reference:</strong> <span id="reference">Your Username</span>
+      <button class="copy-btn" onclick="copyReference()">Copy</button>
+    </p>
+    <div class="note" aria-live="polite">
+      Please transfer your funds to the above account.<br />
+      Use your TradeX username as the payment reference.<br />
+      Your funds will be credited after confirmation.<br />
+      <span style="color:#00ffd5;">Need help? <a href="mailto:support@narejtradex.com" style="color:#00ffd5;text-decoration:underline;">Contact Support</a></span>
+    </div>
+    <div class="success-message" id="success-message"></div>
+    <a href="dashboard.html" class="btn-back" aria-label="Back to Dashboard">Back to Dashboard</a>
+  </div>
+  <script>
+    // Copy to clipboard functionality
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(function() {
+        showSuccess('Copied: ' + text);
+      }, function() {
+        showSuccess('Copy failed. Please copy manually.');
+      });
+    }
+    function copyReference() {
+      // Try to get username from sessionStorage
+      let username = sessionStorage.getItem('username') || 'Your Username';
+      copyToClipboard(username);
+    }
+    function showSuccess(msg) {
+      const msgDiv = document.getElementById('success-message');
+      msgDiv.textContent = msg;
+      msgDiv.style.display = 'block';
+      setTimeout(() => {
+        msgDiv.style.display = 'none';
+      }, 1800);
+    }
+    // Accessibility: focus on the container for screen readers
+    window.onload = function() {
+      document.querySelector('.bank-details-container').focus();
+    }
+  </script>
+</body>
+</html>

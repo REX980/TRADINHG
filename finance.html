@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Finance Overview | NAREJ TRADE X</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="View your financial summary, transaction history, and manage your funds on NAREJ TRADE X.">
+  <link rel="stylesheet" href="dashboard.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #121926 0%, #232f3e 100%);
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto 0 auto;
+      padding: 0 18px;
+    }
+    .finance-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .finance-header h1 {
+      color: #00ffd5;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+    .finance-header p {
+      color: #b2dfdb;
+      font-size: 1.1rem;
+      margin-bottom: 0;
+    }
+    .summary-section {
+      background: #1f2a36;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(0,188,212,0.10);
+      padding: 32px 24px;
+      margin-bottom: 36px;
+      display: flex;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .summary-card {
+      background: #232f3e;
+      border-radius: 10px;
+      padding: 24px 18px;
+      min-width: 220px;
+      flex: 1;
+      text-align: center;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+    }
+    .summary-label {
+      color: #b2dfdb;
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .summary-value {
+      color: #00ffd5;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .summary-action {
+      background: #00e676;
+      color: #181818;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 22px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      margin-top: 10px;
+    }
+    .summary-action:hover {
+      background: #00bcd4;
+      color: #fff;
+    }
+    .transactions-section {
+      background: #232f3e;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(0,188,212,0.10);
+      padding: 32px 24px;
+      margin-bottom: 36px;
+    }
+    .transactions-section h2 {
+      color: #00ffd5;
+      font-size: 1.2rem;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+    .transactions-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+    .transactions-table th, .transactions-table td {
+      padding: 14px 10px;
+      text-align: left;
+      border-bottom: 1px solid #1f2a36;
+    }
+    .transactions-table th {
+      color: #00ffd5;
+      font-size: 1.05rem;
+      font-weight: 600;
+      background: #263545;
+    }
+    .transactions-table tr:hover {
+      background: #263545;
+    }
+    .txn-credit {
+      color: #00e676;
+      font-weight: 700;
+    }
+    .txn-debit {
+      color: #ff5252;
+      font-weight: 700;
+    }
+    .finance-insight {
+      background: #1f2a36;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(0,188,212,0.10);
+      padding: 32px 24px;
+      margin-bottom: 36px;
+      text-align: center;
+    }
+    .finance-insight h3 {
+      color: #00ffd5;
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+    .finance-insight p {
+      color: #b2dfdb;
+      font-size: 1.05rem;
+      margin-bottom: 0;
+    }
+    @media (max-width: 800px) {
+      .container { padding: 0 4px; }
+      .summary-section { flex-direction: column; gap: 14px; }
+      .summary-card { width: 100%; }
+      .transactions-section, .finance-insight { padding: 18px 4px; }
+      .transactions-table th, .transactions-table td { padding: 8px 4px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="finance-header">
+      <h1>Finance Overview</h1>
+      <p>Monitor your balances, review transactions, and manage your funds efficiently on NAREJ TRADE X.</p>
+    </div>
+    <section class="summary-section">
+      <div class="summary-card">
+        <span class="summary-label">Total Balance</span>
+        <span class="summary-value" id="total-balance">$12,450.75</span>
+        <button class="summary-action" onclick="alert('Add Funds feature coming soon!')">Add Funds</button>
+      </div>
+      <div class="summary-card">
+        <span class="summary-label">Available for Trading</span>
+        <span class="summary-value" id="available-balance">$10,200.50</span>
+        <button class="summary-action" onclick="alert('Withdraw feature coming soon!')">Withdraw</button>
+      </div>
+      <div class="summary-card">
+        <span class="summary-label">Pending Withdrawals</span>
+        <span class="summary-value" id="pending-withdrawals">$500.00</span>
+      </div>
+    </section>
+    <section class="transactions-section">
+      <h2>Recent Transactions</h2>
+      <table class="transactions-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Reference</th>
+          </tr>
+        </thead>
+        <tbody id="transactions-body">
+          <tr>
+            <td>2025-06-04</td>
+            <td>Deposit</td>
+            <td class="txn-credit">+ $2,000.00</td>
+            <td>Completed</td>
+            <td>Bank Transfer</td>
+          </tr>
+          <tr>
+            <td>2025-06-03</td>
+            <td>Withdrawal</td>
+            <td class="txn-debit">- $500.00</td>
+            <td>Pending</td>
+            <td>Bank Account</td>
+          </tr>
+          <tr>
+            <td>2025-06-02</td>
+            <td>Trade Profit</td>
+            <td class="txn-credit">+ $150.25</td>
+            <td>Completed</td>
+            <td>BTC/USD</td>
+          </tr>
+          <tr>
+            <td>2025-06-01</td>
+            <td>Fee</td>
+            <td class="txn-debit">- $10.00</td>
+            <td>Completed</td>
+            <td>Trading Fee</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="finance-insight">
+      <h3>Financial Insights</h3>
+      <p>
+        Keep track of your deposits, withdrawals, and trading profits. For detailed statements or support, contact our finance team at 
+        <a href="mailto:finance@narejtradex.com" style="color:#00ffd5;text-decoration:underline;">finance@narejtradex.com</a>.
+        Remember to review your transaction history regularly for transparency and security.
+      </p>
+    </section>
+  </div>
+  <script>
+    // Example: Simulate dynamic balance update (could be replaced with real API)
+    document.addEventListener('DOMContentLoaded', function() {
+      // Simulate fetching balances from localStorage/sessionStorage
+      let total = localStorage.getItem('totalBalance') || '12450.75';
+      let available = localStorage.getItem('availableBalance') || '10200.50';
+      let pending = localStorage.getItem('pendingWithdrawals') || '500.00';
+      document.getElementById('total-balance').textContent = `$${parseFloat(total).toLocaleString(undefined, {minimumFractionDigits:2})}`;
+      document.getElementById('available-balance').textContent = `$${parseFloat(available).toLocaleString(undefined, {minimumFractionDigits:2})}`;
+      document.getElementById('pending-withdrawals').textContent = `$${parseFloat(pending).toLocaleString(undefined, {minimumFractionDigits:2})}`;
+      
+      // Simulate fetching transactions (in real app, fetch from server)
+      let transactions = [
+        { date: '2025-06-04', type: 'Deposit', amount: 2000.00, status: 'Completed', reference: 'Bank Transfer' },
+        { date: '2025-06-03', type: 'Withdrawal', amount: -500.00, status: 'Pending', reference: 'Bank Account' },
+        { date: '2025-06-02', type: 'Trade Profit', amount: 150.25, status: 'Completed', reference: 'BTC/USD' },
+        { date: '2025-06-01', type: 'Fee', amount: -10.00, status: 'Completed', reference: 'Trading Fee' }
+      ];
+      
+      let txnBody = document.getElementById('transactions-body');
+      transactions.forEach(txn => {
+        let row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${txn.date}</td>
+          <td>${txn.type}</td>
+          <td class="${txn.amount > 0 ? 'txn-credit' : 'txn-debit'}">${txn.amount > 0 ? '+' : ''}$${Math.abs(txn.amount).toFixed(2)}</td>
+          <td>${txn.status}</td>
+          <td>${txn.reference}</td>
+        `;
+        txnBody.appendChild(row);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Logout | NAREJ TRADE X</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="You have been securely logged out of NAREJ TRADE X. Thank you for trading with us.">
+  <link rel="stylesheet" href="dashboard.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #121926 0%, #232f3e 100%);
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logout-container {
+      background: #1f2a36;
+      border-radius: 16px;
+      box-shadow: 0 4px 18px rgba(0,188,212,0.10);
+      padding: 48px 32px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+    }
+    .logout-title {
+      color: #00ffd5;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+    }
+    .logout-message {
+      color: #b2dfdb;
+      font-size: 1.1rem;
+      margin-bottom: 24px;
+    }
+    .logout-icon {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 18px;
+      border-radius: 50%;
+      background: #232f3e;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,255,213,0.08);
+    }
+    .logout-icon img {
+      width: 48px;
+      height: 48px;
+      display: block;
+      margin: auto;
+    }
+    .logout-btn {
+      background: #00e676;
+      color: #181818;
+      border: none;
+      border-radius: 8px;
+      padding: 14px 36px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      margin-top: 10px;
+      margin-bottom: 8px;
+    }
+    .logout-btn:hover {
+      background: #00bcd4;
+      color: #fff;
+    }
+    .logout-note {
+      color: #b2dfdb;
+      font-size: 0.98rem;
+      margin-top: 18px;
+      background: #232f3e;
+      border-radius: 8px;
+      padding: 12px;
+      box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+    }
+    @media (max-width: 500px) {
+      .logout-container { padding: 18px 4px; }
+      .logout-title { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="logout-container">
+    <div class="logout-icon">
+      <img src="https://img.icons8.com/fluency/96/exit.png" alt="Logout Icon" />
+    </div>
+    <div class="logout-title">You have been logged out</div>
+    <div class="logout-message">
+      Thank you for using <strong>NAREJ TRADE X</strong>.<br>
+      Your session has ended securely.<br>
+      We hope to see you again soon!
+    </div>
+    <button class="logout-btn" onclick="window.location.href='login.html'">Sign In Again</button>
+    <div class="logout-note">
+      Need help or have questions? <a href="mailto:support@narejtradex.com" style="color:#00ffd5;text-decoration:underline;">Contact Support</a><br>
+      <span style="color:#00ffd5;">Tip:</span> Always log out after using public or shared devices for your security.
+    </div>
+  </div>
+  <script>
+    // Optionally clear session/local storage for security
+    sessionStorage.clear();
+    localStorage.removeItem('authToken');
+    // Optionally, redirect after a delay
+    // setTimeout(() => { window.location.href = 'login.html'; }, 8000);
+  </script>
+</body>
+</html>

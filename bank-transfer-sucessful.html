@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Transfer Successful | NAREJ TRADE X</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Your bank transfer was successful on NAREJ TRADE X.">
+  <style>
+    body {
+      background: linear-gradient(135deg, #121926 0%, #232f3e 100%);
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .success-container {
+      max-width: 500px;
+      margin: 60px auto;
+      text-align: center;
+      padding: 40px 30px 30px 30px;
+      background-color: #1e1e2f;
+      border-radius: 16px;
+      color: #fff;
+      box-shadow: 0 8px 32px rgba(0, 188, 212, 0.10), 0 2px 8px rgba(0,0,0,0.18);
+      position: relative;
+      animation: fadeIn 0.7s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .success-icon {
+      font-size: 54px;
+      color: #00e676;
+      margin-bottom: 18px;
+      display: inline-block;
+      animation: pop 0.6s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes pop {
+      0% { transform: scale(0.5);}
+      80% { transform: scale(1.15);}
+      100% { transform: scale(1);}
+    }
+    .success-container h1 {
+      color: #00e676;
+      margin-bottom: 12px;
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+    .success-container p {
+      font-size: 18px;
+      margin-bottom: 18px;
+      color: #e0f2f1;
+    }
+    .success-container .amount {
+      font-size: 26px;
+      color: #00bcd4;
+      font-weight: bold;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+    }
+    .success-details {
+      background: #232f3e;
+      color: #b2dfdb;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 18px;
+      font-size: 15px;
+      text-align: left;
+      box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+    }
+    .btn {
+      background: #00e676;
+      color: #000;
+      padding: 14px 32px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(0,188,212,0.08);
+      letter-spacing: 1px;
+    }
+    .btn:hover {
+      background: #00bcd4;
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(0,188,212,0.16);
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 24px;
+      color: #00bcd4;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+      color: #00e676;
+    }
+    @media (max-width: 600px) {
+      .success-container {
+        padding: 20px 8px 18px 8px;
+        max-width: 98vw;
+        border-radius: 10px;
+      }
+      .success-container h1 { font-size: 1.3rem; }
+      .success-container .amount { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="success-container" tabindex="-1">
+    <span class="success-icon">&#10004;</span>
+    <h1>Transfer Successful!</h1>
+    <p>You have successfully added:</p>
+    <div class="amount" id="added-amount">$0.00</div>
+    <div class="success-details">
+      <strong>Note:</strong> Your funds are now available in your wallet.<br>
+      For your security, all transactions are protected by SSL encryption.<br>
+      If you have any questions, please <a href="mailto:support@narejtradex.com" style="color:#00ffd5;text-decoration:underline;">contact support</a>.
+    </div>
+    <button class="btn" onclick="goToDashboard()">Go to Dashboard</button>
+    <a href="transaction-history.html" class="back-link">View Transaction History</a>
+  </div>
+
+  <script>
+    // Get the last added amount and username from sessionStorage
+    const amount = sessionStorage.getItem('lastAddedAmount') || "0.00";
+    const username = sessionStorage.getItem('lastUser') || sessionStorage.getItem('demoUsername') || "";
+
+    // Display the correct amount
+    document.getElementById('added-amount').textContent = `$${parseFloat(amount).toFixed(2)}`;
+
+    function goToDashboard() {
+      // Update balance for the user in sessionStorage
+      let balanceKey = 'balance';
+      if (username) balanceKey = `balance_${username}`;
+      let currentBalance = parseFloat(sessionStorage.getItem(balanceKey)) || 0;
+      currentBalance += parseFloat(amount) || 0;
+      sessionStorage.setItem(balanceKey, currentBalance.toFixed(2));
+
+      // Save transaction to localStorage for history
+      const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+      const now = new Date();
+      transactions.push({
+        type: "deposit",
+        amount: parseFloat(amount),
+        date: now.toLocaleString()
+      });
+      localStorage.setItem("transactions", JSON.stringify(transactions));
+
+      window.location.href = 'dashboard.html';
+    }
+
+    // Accessibility: focus on the container
+    document.querySelector('.success-container').focus();
+  </script>
+</body>
+</html>

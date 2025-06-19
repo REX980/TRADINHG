@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Money | NAREJ TRADE X</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <style>
+    body {
+      background-color: #121926;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 60px;
+      min-height: 100vh;
+    }
+
+    .add-money-container {
+      background-color: #1f2a36;
+      padding: 40px 32px 32px 32px;
+      border-radius: 16px;
+      width: 95%;
+      max-width: 500px;
+      box-shadow: 0 8px 32px rgba(0, 188, 212, 0.10), 0 2px 8px rgba(0,0,0,0.18);
+      text-align: center;
+      position: relative;
+      animation: fadeIn 0.7s cubic-bezier(.4,0,.2,1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    .add-money-container h1 {
+      margin-bottom: 20px;
+      color: #00bcd4;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+
+    .add-money-container label {
+      display: block;
+      text-align: left;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #00bcd4;
+      font-size: 15px;
+    }
+
+    .add-money-container input,
+    .add-money-container select {
+      width: 100%;
+      padding: 15px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 8px;
+      background: #232f3e;
+      color: #fff;
+      transition: background 0.3s, outline 0.2s, box-shadow 0.2s;
+      box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+    }
+
+    .add-money-container input:focus,
+    .add-money-container select:focus {
+      outline: 2px solid #00bcd4;
+      background-color: #e0f7fa;
+      color: #232f3e;
+    }
+
+    .add-money-container button {
+      padding: 12px 30px;
+      font-size: 16px;
+      background-color: #00bcd4;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s, box-shadow 0.2s;
+      font-weight: 600;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px rgba(0,188,212,0.08);
+    }
+
+    .add-money-container button:hover {
+      background-color: #0097a7;
+      box-shadow: 0 4px 16px rgba(0,188,212,0.16);
+    }
+
+    .success-message {
+      margin-top: 20px;
+      color: #00e676;
+      font-weight: bold;
+      font-size: 1.1rem;
+      display: none;
+    }
+
+    .error-message {
+      margin-top: 20px;
+      color: #ff5252;
+      font-weight: bold;
+      font-size: 1.1rem;
+      display: none;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: #00bcd4;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+      color: #00e676;
+    }
+
+    .info-box {
+      background: #232f3e;
+      color: #b2dfdb;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 24px;
+      font-size: 15px;
+      text-align: left;
+      box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+    }
+
+    .info-box strong {
+      color: #00ffd5;
+    }
+
+    @media (max-width: 600px) {
+      .add-money-container {
+        padding: 20px 8px 18px 8px;
+        max-width: 98vw;
+        border-radius: 10px;
+      }
+      .add-money-container h1 { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="add-money-container">
+    <h1>Add Money to Your Wallet</h1>
+    <div class="info-box">
+      <strong>Tip:</strong> For instant deposits, use your credit or debit card. Bank transfers may take up to 24 hours to process. All transactions are secured with SSL encryption.
+    </div>
+    <form id="add-money-form" autocomplete="off">
+      <label for="amount">Amount</label>
+      <input type="number" id="amount" placeholder="Enter amount (e.g. 500)" required min="1" step="0.01" autofocus />
+
+      <label for="payment-method">Payment Method</label>
+      <select id="payment-method" required>
+        <option value="" disabled selected>Select method</option>
+        <option value="card">Credit/Debit Card</option>
+        <option value="bank">Bank Transfer</option>
+      </select>
+
+      <div id="bank-details" style="display:none; margin-bottom: 20px; background: #222f44; padding: 15px; border-radius: 8px; color: #ccc;">
+        <p><strong>Bank Transfer Instructions:</strong></p>
+        <p>Account Name: NDUBUISIInc.</p>
+        <p>Account Number: 8135928206</p>
+        <p>Bank: OPAY Bank</p>
+        <p>SWIFT/BIC: GBINUS33</p>
+        <p>Reference: Use your username as payment reference</p>
+      </div>
+
+      <button type="submit">Add Funds</button>
+      <div class="success-message" id="success-message"></div>
+      <div class="error-message" id="error-message"></div>
+    </form>
+    <a href="dashboard.html" class="back-link" aria-label="Back to Dashboard">← Back to Dashboard</a>
+  </div>
+
+  <script>
+    let balance = parseFloat(localStorage.getItem('balance')) || 12450.75;
+
+    const paymentMethod = document.getElementById('payment-method');
+    const bankDetails = document.getElementById('bank-details');
+    if (paymentMethod && bankDetails) {
+      paymentMethod.addEventListener('change', function () {
+        bankDetails.style.display = this.value === 'bank' ? 'block' : 'none';
+      });
+    }
+
+    document.getElementById('add-money-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const amount = parseFloat(document.getElementById('amount').value);
+      const method = document.getElementById('payment-method').value;
+      const successMsg = document.getElementById('success-message');
+      const errorMsg = document.getElementById('error-message');
+      successMsg.style.display = 'none';
+      errorMsg.style.display = 'none';
+
+      if (!amount || isNaN(amount) || amount <= 0) {
+        errorMsg.textContent = 'Please enter a valid amount greater than 0.';
+        errorMsg.style.display = 'block';
+        return;
+      }
+
+      if (!method) {
+        errorMsg.textContent = 'Please select a payment method.';
+        errorMsg.style.display = 'block';
+        return;
+      }
+
+      if (method === 'bank') {
+        window.location.href = 'bank-transfer-success.html';
+        return;
+      }
+
+      // For card, just update balance and show message
+      balance += amount;
+      localStorage.setItem('balance', balance.toFixed(2));
+      successMsg.textContent = `Successfully added $${amount.toFixed(2)} to your wallet.`;
+      successMsg.style.display = 'block';
+      this.reset();
+
+      // Optionally, show notification
+      setTimeout(() => {
+        successMsg.style.display = 'none';
+      }, 5000);
+    });
+  </script>
+</body>
+</html>

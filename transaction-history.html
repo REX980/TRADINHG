@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Transaction History | TradeX</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="View your full transaction history on TradeX.">
+  <style>
+    body {
+      background-color: #121926;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 60px 20px;
+    }
+
+    .history-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: #1f2a36;
+      padding: 40px 30px 30px 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 188, 212, 0.10), 0 2px 8px rgba(0,0,0,0.18);
+      position: relative;
+      animation: fadeIn 0.7s cubic-bezier(.4,0,.2,1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #00bcd4;
+      letter-spacing: 1px;
+      font-size: 2.2rem;
+    }
+
+    .filter-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filter-bar label {
+      font-size: 15px;
+      color: #b2dfdb;
+      margin-right: 8px;
+    }
+
+    .filter-bar select, .filter-bar input[type="date"] {
+      background: #232f3e;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 7px 12px;
+      font-size: 15px;
+      margin-right: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 18px;
+    }
+
+    th, td {
+      padding: 14px;
+      text-align: left;
+      border-bottom: 1px solid #2c3e50;
+    }
+
+    th {
+      background-color: #263545;
+      color: #00e676;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background-color: #2a3545;
+    }
+
+    .type-deposit {
+      color: #00e676;
+      font-weight: 600;
+    }
+
+    .type-withdraw {
+      color: #ff5252;
+      font-weight: 600;
+    }
+
+    .no-transactions {
+      text-align: center;
+      color: #b2dfdb;
+      font-size: 17px;
+      padding: 30px 0;
+    }
+
+    .summary-bar {
+      background: #232f3e;
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin-bottom: 18px;
+      color: #b2dfdb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 16px;
+      box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+    }
+
+    .summary-bar span {
+      margin-right: 18px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: #00bcd4;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+      color: #00e676;
+    }
+
+    @media (max-width: 700px) {
+      .history-container {
+        padding: 16px 2vw;
+      }
+      .summary-bar {
+        flex-direction: column;
+        gap: 8px;
+        font-size: 15px;
+      }
+      th, td {
+        padding: 8px;
+        font-size: 14px;
+      }
+      h1 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="history-container">
+    <h1>Transaction History</h1>
+    <div class="summary-bar" id="summary-bar">
+      <!-- Summary will be inserted here -->
+    </div>
+    <div class="filter-bar">
+      <div>
+        <label for="filter-type">Type:</label>
+        <select id="filter-type">
+          <option value="all">All</option>
+          <option value="deposit">Deposit</option>
+          <option value="withdraw">Withdraw</option>
+        </select>
+      </div>
+      <div>
+        <label for="filter-date">From:</label>
+        <input type="date" id="filter-date-from">
+        <label for="filter-date-to">To:</label>
+        <input type="date" id="filter-date-to">
+      </div>
+      <button id="clear-filters" style="background:#00bcd4;color:#fff;border:none;border-radius:6px;padding:7px 16px;cursor:pointer;">Clear Filters</button>
+    </div>
+    <table id="transaction-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Transactions will be inserted here -->
+      </tbody>
+    </table>
+    <div id="no-transactions" class="no-transactions" style="display:none;">No transactions found for the selected filter.</div>
+    <a href="dashboard.html" class="back-link" aria-label="Back to Dashboard">← Back to Dashboard</a>
+  </div>
+
+  <script>
+    // Load from localStorage
+    let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+    const tableBody = document.querySelector("#transaction-table tbody");
+    const summaryBar = document.getElementById("summary-bar");
+    const noTxDiv = document.getElementById("no-transactions");
+
+    // Filtering
+    const filterType = document.getElementById('filter-type');
+    const filterDateFrom = document.getElementById('filter-date-from');
+    const filterDateTo = document.getElementById('filter-date-to');
+    const clearFiltersBtn = document.getElementById('clear-filters');
+
+    function renderTable(filteredTxs) {
+      tableBody.innerHTML = "";
+      if (filteredTxs.length === 0) {
+        noTxDiv.style.display = "block";
+        return;
+      }
+      noTxDiv.style.display = "none";
+      filteredTxs.forEach(tx => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${tx.date}</td>
+          <td class="type-${tx.type}">${tx.type === "deposit" ? "Deposit" : "Withdraw"}</td>
+          <td>$${parseFloat(tx.amount).toFixed(2)}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    function renderSummary(filteredTxs) {
+      const totalDeposits = filteredTxs
+        .filter(tx => tx.type === "deposit")
+        .reduce((sum, tx) => sum + parseFloat(tx.amount), 0);
+      const totalWithdraws = filteredTxs
+        .filter(tx => tx.type === "withdraw")
+        .reduce((sum, tx) => sum + parseFloat(tx.amount), 0);
+      summaryBar.innerHTML = `
+        <span><strong>Total Deposited:</strong> $${totalDeposits.toFixed(2)}</span>
+        <span><strong>Total Withdrawn:</strong> $${totalWithdraws.toFixed(2)}</span>
+        <span><strong>Transactions:</strong> ${filteredTxs.length}</span>
+      `;
+    }
+
+    function filterTransactions() {
+      let filtered = [...transactions];
+      const type = filterType.value;
+      const from = filterDateFrom.value;
+      const to = filterDateTo.value;
+
+      if (type !== "all") {
+        filtered = filtered.filter(tx => tx.type === type);
+      }
+      if (from) {
+        filtered = filtered.filter(tx => {
+          const txDate = new Date(tx.date);
+          return txDate >= new Date(from);
+        });
+      }
+      if (to) {
+        filtered = filtered.filter(tx => {
+          const txDate = new Date(tx.date);
+          return txDate <= new Date(to + "T23:59:59");
+        });
+      }
+      renderTable(filtered);
+      renderSummary(filtered);
+    }
+
+    filterType.addEventListener('change', filterTransactions);
+    filterDateFrom.addEventListener('change', filterTransactions);
+    filterDateTo.addEventListener('change', filterTransactions);
+    clearFiltersBtn.addEventListener('click', function() {
+      filterType.value = "all";
+      filterDateFrom.value = "";
+      filterDateTo.value = "";
+      filterTransactions();
+    });
+
+    // Initial render
+    filterTransactions();
+
+    // Utility function for saving a transaction (not used here, but can be imported elsewhere)
+    function saveTransaction(type, amount) {
+      const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+      const now = new Date();
+      transactions.push({
+        type,
+        amount,
+        date: now.toLocaleString()
+      });
+      localStorage.setItem("transactions", JSON.stringify(transactions));
+    }
+  </script>
+</body>
+</html>

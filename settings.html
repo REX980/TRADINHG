@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Settings | NAREJ TRADE X</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Manage your account settings, security, and preferences on NAREJ TRADE X.">
+  <link rel="stylesheet" href="dashboard.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #121926 0%, #232f3e 100%);
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 700px;
+      margin: 40px auto 0 auto;
+      padding: 0 18px;
+    }
+    .settings-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .settings-header h1 {
+      color: #00ffd5;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+    .settings-header p {
+      color: #b2dfdb;
+      font-size: 1.1rem;
+      margin-bottom: 0;
+    }
+    .settings-section {
+      background: #1f2a36;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(0,188,212,0.10);
+      padding: 32px 24px;
+      margin-bottom: 36px;
+    }
+    .settings-section h2 {
+      color: #00ffd5;
+      font-size: 1.2rem;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+    .settings-form label {
+      display: block;
+      margin-bottom: 10px;
+      color: #b2dfdb;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .settings-form input, .settings-form select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 18px;
+      border-radius: 8px;
+      border: none;
+      background: #232f3e;
+      color: #fff;
+      font-size: 1rem;
+      box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+    }
+    .settings-form button {
+      background: #00e676;
+      color: #181818;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 28px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      margin-top: 10px;
+    }
+    .settings-form button:hover {
+      background: #00bcd4;
+      color: #fff;
+    }
+    .security-section {
+      background: #232f3e;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(0,188,212,0.10);
+      padding: 32px 24px;
+      margin-bottom: 36px;
+    }
+    .security-section h2 {
+      color: #00ffd5;
+      font-size: 1.2rem;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 26px;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #384760;
+      transition: .4s;
+      border-radius: 26px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 3px;
+      bottom: 3px;
+      background-color: #fff;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    .toggle-switch input:checked + .slider {
+      background-color: #00e676;
+    }
+    .toggle-switch input:checked + .slider:before {
+      transform: translateX(24px);
+    }
+    .success-message {
+      color: #00e676;
+      font-weight: bold;
+      margin-top: 18px;
+      display: none;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+    @media (max-width: 600px) {
+      .container { padding: 0 4px; }
+      .settings-header h1 { font-size: 1.3rem; }
+      .settings-section, .security-section { padding: 12px 6px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="settings-header">
+      <h1>Account Settings</h1>
+      <p>Manage your profile, security, and preferences for a personalized trading experience.</p>
+    </div>
+    <section class="settings-section">
+      <h2>Profile Information</h2>
+      <form class="settings-form" id="profile-form">
+        <label for="username">Username</label>
+        <input type="text" id="username" value="TraderX" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" value="traderx@email.com" required />
+
+        <label for="language">Language</label>
+        <select id="language">
+          <option value="en" selected>English</option>
+          <option value="fr">French</option>
+          <option value="es">Spanish</option>
+        </select>
+
+        <button type="submit">Save Changes</button>
+        <div class="success-message" id="profile-success"></div>
+      </form>
+    </section>
+    <section class="security-section">
+      <h2>Security Settings</h2>
+      <form class="settings-form" id="security-form">
+        <label for="password">Change Password</label>
+        <input type="password" id="password" placeholder="New password" />
+
+        <label>
+          Two-Factor Authentication
+          <span class="toggle-switch">
+            <input type="checkbox" id="2fa-toggle" />
+            <span class="slider"></span>
+          </span>
+        </label>
+
+        <button type="submit">Update Security</button>
+        <div class="success-message" id="security-success"></div>
+      </form>
+    </section>
+  </div>
+  <script>
+    // Profile form handler
+    document.getElementById('profile-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('profile-success').textContent = "Profile updated successfully!";
+      document.getElementById('profile-success').style.display = "block";
+      setTimeout(() => {
+        document.getElementById('profile-success').style.display = "none";
+      }, 1800);
+    });
+
+    // Security form handler
+    document.getElementById('security-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('security-success').textContent = "Security settings updated!";
+      document.getElementById('security-success').style.display = "block";
+      setTimeout(() => {
+        document.getElementById('security-success').style.display = "none";
+      }, 1800);
+    });
+  </script>
+</body>
+</html>

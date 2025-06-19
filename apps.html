@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Apps & Integrations | NAREJ TRADE X</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Download NAREJ TRADE X apps for mobile and desktop. Explore integrations and trading tools for a seamless experience.">
+  <link rel="stylesheet" href="dashboard.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #121926 0%, #232f3e 100%);
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto 0 auto;
+      padding: 0 18px;
+    }
+    .apps-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .apps-header h1 {
+      color: #00ffd5;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+    .apps-header p {
+      color: #b2dfdb;
+      font-size: 1.1rem;
+      margin-bottom: 0;
+    }
+    .apps-section {
+      background: #1f2a36;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(0,188,212,0.10);
+      padding: 32px 24px;
+      margin-bottom: 36px;
+    }
+    .apps-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+      margin-top: 18px;
+    }
+    .app-card {
+      background: #232f3e;
+      border-radius: 10px;
+      padding: 24px 18px;
+      width: 260px;
+      box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+      text-align: center;
+      margin-bottom: 12px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .app-card:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 8px 32px rgba(0,255,213,0.13), 0 2px 8px rgba(0,0,0,0.18);
+    }
+    .app-icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      background: #fff;
+      object-fit: contain;
+      box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+    }
+    .app-title {
+      color: #00ffd5;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+    .app-desc {
+      color: #b2dfdb;
+      font-size: 0.98rem;
+      margin-bottom: 12px;
+    }
+    .download-btn {
+      background: #00e676;
+      color: #181818;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 22px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      margin-bottom: 6px;
+      margin-top: 6px;
+    }
+    .download-btn:hover {
+      background: #00bcd4;
+      color: #fff;
+    }
+    .integration-section {
+      background: #232f3e;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(0,188,212,0.10);
+      padding: 32px 24px;
+      margin-bottom: 36px;
+    }
+    .integration-section h2 {
+      color: #00ffd5;
+      font-size: 1.2rem;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+    .integration-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      color: #b2dfdb;
+      font-size: 1.05rem;
+    }
+    .integration-list li {
+      margin-bottom: 14px;
+      background: #1f2a36;
+      border-radius: 8px;
+      padding: 12px 16px;
+      box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .integration-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: #fff;
+      object-fit: contain;
+      margin-right: 8px;
+    }
+    @media (max-width: 700px) {
+      .container { padding: 0 4px; }
+      .apps-header h1 { font-size: 1.3rem; }
+      .apps-section, .integration-section { padding: 14px 6px; }
+      .apps-list { flex-direction: column; gap: 14px; }
+      .app-card { width: 98vw; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="apps-header">
+      <h1>Apps & Integrations</h1>
+      <p>Access NAREJ TRADE X anywhere. Download our apps and connect with your favorite tools for a seamless trading experience.</p>
+    </div>
+    <section class="apps-section">
+      <h2>Download Our Apps</h2>
+      <div class="apps-list">
+        <div class="app-card">
+          <img src="https://img.icons8.com/color/96/000000/android-os.png" alt="Android App" class="app-icon" />
+          <div class="app-title">Android App</div>
+          <div class="app-desc">Trade on the go with our secure and intuitive Android app.</div>
+          <a href="#" class="download-btn">Download APK</a>
+        </div>
+        <div class="app-card">
+          <img src="https://img.icons8.com/color/96/000000/apple-logo.png" alt="iOS App" class="app-icon" />
+          <div class="app-title">iOS App</div>
+          <div class="app-desc">Experience fast and reliable trading on your iPhone or iPad.</div>
+          <a href="#" class="download-btn">App Store</a>
+        </div>
+        <div class="app-card">
+          <img src="https://img.icons8.com/color/96/000000/windows-10.png" alt="Windows App" class="app-icon" />
+          <div class="app-title">Windows Desktop</div>
+          <div class="app-desc">Full-featured desktop trading for Windows users.</div>
+          <a href="#" class="download-btn">Download EXE</a>
+        </div>
+        <div class="app-card">
+          <img src="https://img.icons8.com/color/96/000000/mac-os.png" alt="Mac App" class="app-icon" />
+          <div class="app-title">Mac Desktop</div>
+          <div class="app-desc">Seamless trading experience for macOS devices.</div>
+          <a href="#" class="download-btn">Download DMG</a>
+        </div>
+      </div>
+    </section>
+    <section class="integration-section">
+      <h2>Integrations & Tools</h2>
+      <ul class="integration-list">
+        <li>
+          <img src="https://img.icons8.com/color/48/000000/tradingview.png" alt="TradingView" class="integration-icon" />
+          <span><strong>TradingView:</strong> Connect your account for advanced charting and signals.</span>
+        </li>
+        <li>
+          <img src="https://img.icons8.com/color/48/000000/telegram-app.png" alt="Telegram" class="integration-icon" />
+          <span><strong>Telegram Bot:</strong> Get instant trade alerts and manage orders via Telegram.</span>
+        </li>
+        <li>
+          <img src="https://img.icons8.com/color/48/000000/api-settings.png" alt="API" class="integration-icon" />
+          <span><strong>API Access:</strong> Build your own trading bots and automate strategies.</span>
+        </li>
+        <li>
+          <img src="https://img.icons8.com/color/48/000000/google-assistant.png" alt="Google Assistant" class="integration-icon" />
+          <span><strong>Google

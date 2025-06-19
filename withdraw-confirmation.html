@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Withdrawal Confirmed | NAREJ TRADE X</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Your withdrawal request has been confirmed on NAREJ TRADE X.">
+  <link rel="stylesheet" href="dashboard.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #121926 0%, #232f3e 100%);
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .confirmation-container {
+      max-width: 500px;
+      margin: 40px auto;
+      background-color: #1f2a36;
+      padding: 40px 30px 30px 30px;
+      text-align: center;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 188, 212, 0.12), 0 2px 8px rgba(0,0,0,0.18);
+      color: #fff;
+      position: relative;
+      animation: fadeIn 0.8s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .confirmation-container .icon-success {
+      font-size: 54px;
+      color: #00e676;
+      margin-bottom: 18px;
+      display: inline-block;
+      animation: pop 0.6s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes pop {
+      0% { transform: scale(0.5);}
+      80% { transform: scale(1.15);}
+      100% { transform: scale(1);}
+    }
+    .confirmation-container h1 {
+      color: #00e676;
+      margin-bottom: 16px;
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+    .confirmation-container p {
+      font-size: 18px;
+      margin-bottom: 18px;
+      color: #e0f2f1;
+    }
+    .confirmation-container .amount {
+      font-size: 26px;
+      color: #00bcd4;
+      font-weight: bold;
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+    }
+    .confirmation-container .details {
+      font-size: 15px;
+      color: #b2dfdb;
+      margin-bottom: 18px;
+    }
+    .confirmation-container .progress-bar {
+      width: 100%;
+      background: #232f3e;
+      border-radius: 8px;
+      height: 18px;
+      margin: 24px 0 12px 0;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,188,212,0.08);
+      position: relative;
+    }
+    .confirmation-container .progress {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #00e676 0%, #00bcd4 100%);
+      border-radius: 8px;
+      transition: width 1.2s cubic-bezier(.4,0,.2,1);
+    }
+    .confirmation-container .progress-label {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 18px;
+      z-index: 2;
+    }
+    .confirmation-container .tips {
+      background: #232f3e;
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 18px;
+      color: #b2dfdb;
+      font-size: 15px;
+      text-align: left;
+      box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+    }
+    .confirmation-container .tips ul {
+      margin: 0 0 0 18px;
+      padding: 0;
+    }
+    .confirmation-container .tips li {
+      margin-bottom: 7px;
+      line-height: 1.5;
+    }
+    .confirmation-container .support-link {
+      display: block;
+      margin-top: 18px;
+      color: #00e676;
+      text-decoration: underline;
+      font-size: 15px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .confirmation-container .support-link:hover {
+      color: #00bcd4;
+    }
+    .confirmation-container a {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 12px 32px;
+      background-color: #00bcd4;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      box-shadow: 0 2px 8px rgba(0,188,212,0.08);
+      transition: background 0.3s, box-shadow 0.2s;
+    }
+    .confirmation-container a:hover {
+      background-color: #0097a7;
+      box-shadow: 0 4px 16px rgba(0,188,212,0.16);
+    }
+    @media (max-width: 600px) {
+      .confirmation-container {
+        padding: 24px 8px 18px 8px;
+        max-width: 98vw;
+      }
+      .confirmation-container h1 {
+        font-size: 1.3rem;
+      }
+      .confirmation-container .amount {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="confirmation-container">
+    <span class="icon-success">&#10004;</span>
+    <h1>Withdrawal Submitted</h1>
+    <p>Your withdrawal request has been successfully submitted.</p>
+    <p class="amount" id="withdraw-amount">Amount: $500.00</p>
+    <div class="details" id="withdraw-details">
+      Funds will be processed within 24 hours.<br>
+      You will receive an email notification once completed.
+    </div>
+    <div class="progress-bar">
+      <div class="progress" id="progress-bar"></div>
+      <span class="progress-label" id="progress-label">Processing...</span>
+    </div>
+    <div class="tips">
+      <strong>Tips for a smooth withdrawal:</strong>
+      <ul>
+        <li>Ensure your bank details are up to date in your profile.</li>
+        <li>Contact support if you do not receive funds within 24 hours.</li>
+        <li>Check your email for withdrawal status updates.</li>
+        <li>Withdrawals may be delayed on weekends or public holidays.</li>
+      </ul>
+    </div>
+    <a href="dashboard.html">Back to Dashboard</a>
+    <a href="mailto:support@narejtradex.com" class="support-link">Need help? Contact Support</a>
+  </div>
+  <script>
+    // Optionally, dynamically set the withdrawn amount if stored in sessionStorage
+    const lastWithdrawn = sessionStorage.getItem('lastWithdrawnAmount');
+    if (lastWithdrawn && !isNaN(lastWithdrawn)) {
+      document.getElementById('withdraw-amount').textContent = `Amount: $${parseFloat(lastWithdrawn).toFixed(2)}`;
+    }
+
+    // Animate the progress bar to simulate processing
+    const progressBar = document.getElementById('progress-bar');
+    const progressLabel = document.getElementById('progress-label');
+    let progress = 0;
+    function animateProgress() {
+      if (progressBar) {
+        progress += 1;
+        progressBar.style.width = progress + '%';
+        if (progress < 100) {
+          setTimeout(animateProgress, 18);
+        } else {
+          progressLabel.textContent = 'Completed!';
+          progressBar.style.background = 'linear-gradient(90deg, #00e676 0%, #00bcd4 100%)';
+        }
+      }
+    }
+    animateProgress();
+
+    // Accessibility: focus on the confirmation container for screen readers
+    window.onload = function() {
+      const container = document.querySelector('.confirmation-container');
+      if (container) {
+        container.setAttribute('tabindex', '-1');
+        container.focus();
+      }
+    };
+  </script>
+</body>
+</html>

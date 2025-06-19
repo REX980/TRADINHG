@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Home | NAREJ TRADE X</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="NAREJ TRADE X - The next generation trading platform for secure, fast, and insightful investing.">
+  <link rel="stylesheet" href="home.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #00bcd4 0%, #232f3e 100%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: #181818;
+      padding: 18px 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+    .logo {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #00ffd5;
+      letter-spacing: 2px;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 24px;
+      font-weight: 500;
+      transition: color 0.2s;
+      font-size: 1rem;
+    }
+    nav a:hover {
+      color: #00ffd5;
+    }
+    .hero {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(120deg, #232f3e 60%, #00bcd4 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-content {
+      text-align: center;
+      max-width: 600px;
+      background: rgba(30,30,30,0.85);
+      padding: 48px 32px 38px 32px;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(0, 188, 212, 0.10), 0 2px 8px rgba(0,0,0,0.18);
+      position: relative;
+      z-index: 2;
+    }
+    .hero-content h1 {
+      font-size: 2.7rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+      color: #00ffd5;
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 32px;
+      color: #e0f7fa;
+    }
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .btn {
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(0,255,213,0.08);
+      cursor: pointer;
+      letter-spacing: 1px;
+      border: none;
+      display: inline-block;
+    }
+    .btn.primary {
+      background: #00ffd5;
+      color: #181818;
+    }
+    .btn.primary:hover {
+      background: #00bcd4;
+      color: #fff;
+    }
+    .btn.secondary {
+      background: transparent;
+      color: #00ffd5;
+      border: 2px solid #00ffd5;
+    }
+    .btn.secondary:hover {
+      background: #00ffd5;
+      color: #181818;
+    }
+    .features-section {
+      background: #181818;
+      padding: 48px 0;
+      text-align: center;
+    }
+    .features-section h2 {
+      color: #00ffd5;
+      font-size: 2rem;
+      margin-bottom: 24px;
+      font-weight: 700;
+    }
+    .features-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 18px;
+    }
+    .feature-card {
+      background: #232323;
+      border-radius: 10px;
+      padding: 28px 18px;
+      max-width: 260px;
+      min-width: 180px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+      color: #fff;
+      text-align: left;
+      font-size: 1rem;
+      margin-bottom: 12px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .feature-card:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 8px 32px rgba(0,255,213,0.10), 0 2px 8px rgba(0,0,0,0.18);
+    }
+    .feature-card strong {
+      color: #00ffd5;
+      font-size: 1.1em;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .testimonial-section {
+      background: #232f3e;
+      padding: 48px 0;
+      text-align: center;
+    }
+    .testimonial-section h2 {
+      color: #00ffd5;
+      font-size: 1.5rem;
+      margin-bottom: 24px;
+      font-weight: 700;
+    }
+    .testimonial-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 18px;
+    }
+    .testimonial-card {
+      background: #232323;
+      border-radius: 10px;
+      padding: 24px 18px;
+      max-width: 320px;
+      min-width: 180px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+      color: #fff;
+      text-align: left;
+      font-size: 1rem;
+      margin-bottom: 12px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 8px 32px rgba(0,255,213,0.10), 0 2px 8px rgba(0,0,0,0.18);
+    }
+    .testimonial-card .stars {
+      color: #ffd700;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+    .testimonial-card h4 {
+      margin-top: 16px;
+      color: #00ffd5;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    footer {
+      background: #181818;
+      padding: 18px 0;
+      text-align: center;
+      color: #b2dfdb;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      border-top: 1px solid #232f3e;
+    }
+    @media (max-width: 900px) {
+      .features-list, .testimonial-list { flex-direction: column; align-items: center; }
+      .hero-content { padding: 28px 8px 24px 8px; }
+    }
+    @media (max-width: 600px) {
+      header { flex-direction: column; padding: 12px 0; }
+      .logo { margin-bottom: 8px; }
+      .hero-content h1 { font-size: 1.3rem; }
+      .features-section h2, .testimonial-section h2 { font-size: 1.1rem; }
+      .feature-card, .testimonial-card { padding: 14px 8px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">NAREJ TRADE X</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+      <a href="register.html">Register</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to NAREJ TRADE X</h1>
+      <p>Trade smarter. Invest better. Join the future of trading today.<br>
+      Experience secure, fast, and insightful investing with our next-generation platform.</p>
+      <div class="cta-buttons">
+        <a href="register.html" class="btn primary">Get Started</a>
+        <a href="login.html" class="btn secondary">Login</a>
+      </div>
+      <div style="margin-top:24px;">
+        <a href="#features" style="color:#00ffd5;text-decoration:underline;font-size:1rem;">Learn more about our features ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features-section" id="features">
+    <h2>Platform Features</h2>
+    <div class="features-list">
+      <div class="feature-card">
+        <strong>Real-Time Market Data</strong>
+        Access live price charts, order books, and market depth for all major assets.
+      </div>
+      <div class="feature-card">
+        <strong>Advanced Analytics</strong>
+        Utilize technical indicators, portfolio tracking, and performance insights.
+      </div>
+      <div class="feature-card">
+        <strong>Secure Wallet</strong>
+        Multi-layered security, cold storage, and 2FA keep your assets safe.
+      </div>
+      <div class="feature-card">
+        <strong>Fast Execution</strong>
+        Lightning-fast order matching and minimal latency for all trades.
+      </div>
+      <div class="feature-card">
+        <strong>24/7 Support</strong>
+        Our expert team is always available to assist you via chat or email.
+      </div>
+      <div class="feature-card">
+        <strong>Mobile Friendly</strong>
+        Trade and monitor your portfolio on any device, anywhere, anytime.
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonial-section" id="testimonials">
+    <h2>What Our Users Say</h2>
+    <div class="testimonial-list">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"NAREJ TRADE X made investing easy and secure. The platform is intuitive and support is always available!"</p>
+        <h4>- Priya S., Retail Investor</h4>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"I love the real-time analytics and the mobile-friendly design. Highly recommended for all traders."</p>
+        <h4>- Alex M., Student Trader</h4>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Switching to NAREJ TRADE X was the best decision. Fast execution and top-notch security!"</p>
+        <h4>- Jordan R., Day Trader</h4>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 NAREJ TRADE X. All rights reserved. | <a href="mailto:support@narejtradex.com" style="color:#00ffd5;text-decoration:underline;">Contact Support</a></p>
+  </footer>
+</body>
+</html>

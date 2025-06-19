@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login Options | NAREJ TRADE X</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Login securely to NAREJ TRADE X using Google or iCloud. Fast, secure, and convenient access to your trading dashboard.">
+  <link rel="stylesheet" href="dashboard.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #121926 0%, #232f3e 100%);
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .login-container {
+      background: #1f2a36;
+      border-radius: 16px;
+      box-shadow: 0 4px 18px rgba(0,188,212,0.10);
+      padding: 48px 32px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    .login-title {
+      color: #00ffd5;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+    }
+    .login-desc {
+      color: #b2dfdb;
+      font-size: 1.08rem;
+      margin-bottom: 28px;
+    }
+    .login-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 14px 0;
+      margin-bottom: 18px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(0,255,213,0.08);
+      background: #232f3e;
+      color: #fff;
+    }
+    .login-btn.google {
+      background: linear-gradient(90deg, #fff 60%, #e0e0e0 100%);
+      color: #181818;
+      border: 1.5px solid #00bcd4;
+    }
+    .login-btn.google:hover {
+      background: #00bcd4;
+      color: #fff;
+    }
+    .login-btn.icloud {
+      background: linear-gradient(90deg, #f5f6fa 60%, #d1d8e0 100%);
+      color: #181818;
+      border: 1.5px solid #00ffd5;
+    }
+    .login-btn.icloud:hover {
+      background: #00ffd5;
+      color: #232f3e;
+    }
+    .login-btn img {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: #fff;
+      object-fit: contain;
+    }
+    .divider {
+      margin: 24px 0;
+      text-align: center;
+      color: #b2dfdb;
+      position: relative;
+    }
+    .divider:before, .divider:after {
+      content: "";
+      display: inline-block;
+      width: 40%;
+      height: 1px;
+      background: #384760;
+      vertical-align: middle;
+      margin: 0 8px;
+    }
+    .note {
+      color: #b2dfdb;
+      font-size: 0.98rem;
+      margin-top: 18px;
+      background: #232f3e;
+      border-radius: 8px;
+      padding: 12px;
+      box-shadow: 0 1px 4px rgba(0,188,212,0.06);
+    }
+    @media (max-width: 500px) {
+      .login-container { padding: 18px 4px; }
+      .login-title { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-title">Sign in to NAREJ TRADE X</div>
+    <div class="login-desc">Choose a secure and convenient login method to access your trading dashboard.</div>
+    <button class="login-btn google" onclick="loginWith('Google')">
+      <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google Logo" />
+      Continue with Google
+    </button>
+    <button class="login-btn icloud" onclick="loginWith('iCloud')">
+      <img src="https://img.icons8.com/ios-filled/50/000000/icloud.png" alt="iCloud Logo" />
+      Continue with iCloud
+    </button>
+    <div class="divider">or</div>
+    <button class="login-btn" onclick="window.location.href='login.html'">
+      <img src="https://img.icons8.com/ios-filled/50/00ffd5/user-male-circle.png" alt="Email Login" />
+      Sign in with Email
+    </button>
+    <div class="note">
+      By signing in, you agree to our <a href="#" style="color:#00ffd5;text-decoration:underline;">Terms of Service</a> and <a href="#" style="color:#00ffd5;text-decoration:underline;">Privacy Policy</a>.<br>
+      Need help? <a href="mailto:support@narejtradex.com" style="color:#00ffd5;text-decoration:underline;">Contact Support</a>
+    </div>
+  </div>
+  <script>
+    function loginWith(provider) {
+      alert(`Redirecting to ${provider} login...`);
+      // Here you would integrate with OAuth or the provider's SDK
+    }
